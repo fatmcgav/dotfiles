@@ -44,8 +44,6 @@ export LIBVIRT_DEFAULT_URI=qemu:///system
 
 # Set default Vagrant provider
 export VAGRANT_DEFAULT_PROVIDER=libvirt
-# Load Vagrant settings
-. ~/.bashrc_vagrant.sh
 
 # Git aliases
 function_exists() {

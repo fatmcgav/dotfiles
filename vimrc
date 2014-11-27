@@ -83,8 +83,8 @@ set noswapfile
 imap jj <ESC>
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
+map <space> /<CR>
+map <c-space> ?<CR>
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
