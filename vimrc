@@ -14,7 +14,7 @@ Bundle 'gmarik/vundle'
 
 " My Bundles
 Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-surround'
+Bundle 'surround.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-commentary'
