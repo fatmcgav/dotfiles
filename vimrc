@@ -18,6 +18,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-surround'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'godlygeek/tabular'
@@ -155,7 +156,10 @@ let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 600
 let g:ctrlp_max_depth = 5
 
-"AutoPairs
+" Utilsnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Set the terminal title
 "let &titlestring = $USER . "@" . hostname() . ": vim " . expand("%:t")
