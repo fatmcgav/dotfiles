@@ -20,7 +20,10 @@ Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 Bundle 'nanotech/jellybeans.vim'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'bling/vim-airline'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'edkolev/tmuxline.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
@@ -56,6 +59,7 @@ set synmaxcol=128
 set ttyscroll=10
 set encoding=utf-8
 set tabstop=2
+set laststatus=2
 set nowrap
 set number
 set relativenumber
@@ -68,6 +72,8 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
+set t_Co=256
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -160,6 +166,10 @@ let g:ctrlp_max_depth = 5
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'solarized'
 
 " Set the terminal title
 "let &titlestring = $USER . "@" . hostname() . ": vim " . expand("%:t")
