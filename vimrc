@@ -19,6 +19,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-endwise'
 Bundle 'nanotech/jellybeans.vim'
 "Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'bling/vim-airline'
@@ -27,6 +28,7 @@ Bundle 'edkolev/tmuxline.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rking/ag.vim'
 Bundle 'kana/vim-textobj-user'
@@ -108,6 +110,9 @@ map <Up>   gk
 nnoremap j gj
 nnoremap k gk
 
+" Toggle paste mode on and off
+map <silent> <leader>pp :setlocal paste!<cr>
+
 " Open new buffers
 nmap <leader>s<left>   :leftabove  vnew<cr>
 nmap <leader>s<right>  :rightbelow vnew<cr>
@@ -145,11 +150,39 @@ augroup myfiletypes
 augroup END
 
 " NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
+" Launch on start
+"autocmd VimEnter * NERDTree
+"autocmd VimEnter * wincmd p
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Auto close NERDTree if last buffer
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"nmap <leader>n :NERDTreeToggle<CR>
+map <leader>n <plug>NERDTreeTabsToggle<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden = 1
 let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg', '\.git', '\.svn']
+"map <C-o> :NERDTreeToggle %<CR>
+
+" Check if NERDTree is open or active
+function! s:isNERDTreeOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+ 
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! s:syncTree()
+  if &modifiable && s:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeTabsFind
+    wincmd p
+  endif
+endfunction
+ 
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call s:syncTree()
 
 " Syntastic
 let g:syntastic_mode_map = { 'mode': 'passive' }
@@ -169,7 +202,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'solarized'
+"let g:airline_theme = 'solarized'
+let g:airline_theme = 'powerlineish'
 
 " Set the terminal title
 "let &titlestring = $USER . "@" . hostname() . ": vim " . expand("%:t")
@@ -198,17 +232,15 @@ autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 autocmd BufWrite *.pp :call DeleteTrailingWS()
 
-" Auto close NERDTree if last buffer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" Autoload NERDTree if no file
-function! StartUp()
-    if 0 == argc()
-        NERDTree
-    end
-endfunction
+" " Autoload NERDTree if no file
+" function! StartUp()
+"     if 0 == argc()
+"         NERDTree
+"     end
+" endfunction
 
-autocmd VimEnter * call StartUp()
+" autocmd VimEnter * call StartUp()
 
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()

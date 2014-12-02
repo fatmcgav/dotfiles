@@ -70,8 +70,11 @@
     ca = commit --amend
     amend = commit --amend
     caa = commit -a --amend -C HEAD
+    ft = fetch
     filelog = log -u
     fl = log -u
+    pl = pull
+    po = push origin
 
     ai = add --interactive
 

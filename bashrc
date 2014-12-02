@@ -30,6 +30,12 @@ fi
 source $HOME/Tools/liquidprompt/liquidprompt
 
 # }}}
+# test powerline {{{
+#POWERLINE_BASH_CONTINUATION=1
+#POWERLINE_BASH_SELECT=1
+#source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh 
+
+# }}}
 # rvm setup {{{
 if [ -e $HOME/.rvm/scripts/rvm ]; then 
   source $HOME/.rvm/scripts/rvm
@@ -41,9 +47,6 @@ alias reload='source ~/.bash_profile'
 
 # Default to System QEMU connection
 export LIBVIRT_DEFAULT_URI=qemu:///system
-
-# Set default Vagrant provider
-export VAGRANT_DEFAULT_PROVIDER=libvirt
 
 # Git aliases
 function_exists() {
