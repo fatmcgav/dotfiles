@@ -12,31 +12,42 @@ call vundle#rc()
 " Let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
-" My Bundles
+" Formatting plugins 
 Bundle 'tpope/vim-sensible'
 Bundle 'surround.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-endwise'
-Bundle 'nanotech/jellybeans.vim'
-"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'bling/vim-airline'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'edkolev/tmuxline.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-endwise'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
+Bundle 'jiangmiao/auto-pairs'
+
+" Testing plugins
+Bundle 'tpope/vim-rvm'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-rake'
+Bundle 'thoughtbot/vim-rspec'
+
+" Tmux plugins
+Bundle 'edkolev/tmuxline.vim'
+Bundle 'edkolev/promptline.vim'
+
+" Utility plugins
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-fugitive'
+"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rking/ag.vim'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'jiangmiao/auto-pairs'
+
 " Puppet plugins
 Bundle 'rodjek/vim-puppet'
 
@@ -52,6 +63,7 @@ let mapleader=","
 let g:mapleader=","
 
 " Vim settings
+set hidden
 set cursorline
 set expandtab
 set modelines=0
@@ -75,6 +87,7 @@ set incsearch
 set ignorecase
 set smartcase
 
+" Set terminal color
 set t_Co=256
 
 " Use Unix as the standard file type
@@ -113,6 +126,9 @@ nnoremap k gk
 " Toggle paste mode on and off
 map <silent> <leader>pp :setlocal paste!<cr>
 
+" Always use vertical diffs
+set diffopt+=vertical
+
 " Open new buffers
 nmap <leader>s<left>   :leftabove  vnew<cr>
 nmap <leader>s<right>  :rightbelow vnew<cr>
@@ -148,6 +164,15 @@ augroup myfiletypes
   au BufRead,BufNewFile Vagrantfile set ft=ruby
   au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
+
+" vim-rspec mappings
+nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <Leader>s :call RunNearestSpec()<CR>
+nnoremap <Leader>l :call RunLastSpec()<CR>
+
+" Dispatch config
+let g:rspec_command = "Dispatch rspec {spec}"
+
 
 " NERDTree
 " Launch on start
