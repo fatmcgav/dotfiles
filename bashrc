@@ -42,6 +42,9 @@ if [ -e $HOME/.rvm/scripts/rvm ]; then
   PATH=$PATH:$HOME/.rvm/bin
 fi
 
+# Set EDITOR
+export EDITOR=vim
+
 # Refresh shell
 alias reload='source ~/.bash_profile'
 

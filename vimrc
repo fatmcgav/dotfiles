@@ -23,22 +23,22 @@ Bundle 'plasticboy/vim-markdown'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 Bundle 'jiangmiao/auto-pairs'
+Bundle 'tpope/vim-commentary'
 
 " Testing plugins
 Bundle 'tpope/vim-rvm'
 Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-rake'
 Bundle 'thoughtbot/vim-rspec'
+Bundle 'benmills/vimux'
+Bundle 'skalnik/vim-vroom'
 
 " Tmux plugins
 Bundle 'edkolev/tmuxline.vim'
 Bundle 'edkolev/promptline.vim'
 
 " Utility plugins
-Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
-"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
@@ -165,14 +165,8 @@ augroup myfiletypes
   au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
-" vim-rspec mappings
-nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>s :call RunNearestSpec()<CR>
-nnoremap <Leader>l :call RunLastSpec()<CR>
-
-" Dispatch config
-let g:rspec_command = "Dispatch rspec {spec}"
-
+" Vim-vroom
+let g:vroom_use_vimux = 1
 
 " NERDTree
 " Launch on start
