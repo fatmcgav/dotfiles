@@ -12,6 +12,7 @@
 export VAGRANT_DEFAULT_PROVIDER=libvirt
 alias vbl='vagrant box list'
 alias vs='vagrant status'
+alias vst='vagrant status'
 alias vh='vagrant halt'
 alias vp='vagrant provision'
 alias vr='vagrant reload'

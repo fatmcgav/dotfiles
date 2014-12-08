@@ -24,6 +24,7 @@ Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'tpope/vim-commentary'
+Bundle 'tcl.vim'
 
 " Testing plugins
 Bundle 'tpope/vim-rvm'
