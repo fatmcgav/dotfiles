@@ -1,6 +1,6 @@
 # .bashrc
 
-#Global options {{{
+# Global options 
 export HISTFILESIZE=999999
 export HISTSIZE=999999
 export HISTCONTROL=ignoredups:ignorespace
@@ -17,26 +17,22 @@ fi
 
 # Source any bash_completion files
 if [ -d /etc/bash_completion.d/ ]; then
-    source /etc/bash_completion.d/*
+    . /etc/bash_completion.d/*
 fi
 
 # Source any bashrc.d files
 if [ -d $HOME/.bashrc.d/ ]; then
-    source $HOME/.bashrc.d/*
+  for x in $HOME/.bashrc.d/* ; do
+    test -f "$x" || continue
+    test -x "$x" || continue
+    . "$x"
+  done
 fi
 
-# }}}
-# include liquidprompt {{{
+# Use liquidprompt
 source $HOME/Tools/liquidprompt/liquidprompt
 
-# }}}
-# test powerline {{{
-#POWERLINE_BASH_CONTINUATION=1
-#POWERLINE_BASH_SELECT=1
-#source $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh 
-
-# }}}
-# rvm setup {{{
+# rvm setup
 if [ -e $HOME/.rvm/scripts/rvm ]; then 
   source $HOME/.rvm/scripts/rvm
   PATH=$PATH:$HOME/.rvm/bin
@@ -50,6 +46,10 @@ alias reload='source ~/.bash_profile'
 
 # Default to System QEMU connection
 export LIBVIRT_DEFAULT_URI=qemu:///system
+
+# Set TERM for ssh sessions
+alias ssh='TERM=xterm ssh'
+
 
 # Git aliases
 function_exists() {

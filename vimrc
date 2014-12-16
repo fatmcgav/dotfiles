@@ -25,6 +25,8 @@ Bundle 'honza/vim-snippets'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'tpope/vim-commentary'
 Bundle 'tcl.vim'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'vim-svngutter'
 
 " Testing plugins
 Bundle 'tpope/vim-rvm'
@@ -68,7 +70,7 @@ let g:mapleader=","
 set hidden
 set cursorline
 set expandtab
-set modelines=0
+set modelines=5
 set shiftwidth=2
 set clipboard=unnamed
 set synmaxcol=128
@@ -161,6 +163,7 @@ augroup myfiletypes
   autocmd FileType ruby,eruby,yaml set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab
   autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
   autocmd FileType puppet set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+  autocmd FileType perl set autoindent tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   " treat rackup files like ruby
   au BufRead,BufNewFile *.ru set ft=ruby
   au BufRead,BufNewFile Gemfile set ft=ruby
@@ -170,6 +173,9 @@ augroup END
 
 " Vim-vroom
 let g:vroom_use_vimux = 1
+
+" tcl.vim
+let tcl_extended_syntax = 1
 
 " NERDTree
 " Launch on start
