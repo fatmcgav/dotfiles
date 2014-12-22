@@ -27,6 +27,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tcl.vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'vim-svngutter'
+Bundle 'sukima/xmledit'
 
 " Testing plugins
 Bundle 'tpope/vim-rvm'
@@ -159,11 +160,12 @@ map! <F1> <Esc>
 augroup myfiletypes
   " Clear old autocmds in group
   autocmd!
-  " autoindent with two spaces, always expand tabs
+  " Filetype modelines 
   autocmd FileType ruby,eruby,yaml set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab
   autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
   autocmd FileType puppet set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
   autocmd FileType perl set autoindent tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  autocmd FileType xml set autoindent tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab
   " treat rackup files like ruby
   au BufRead,BufNewFile *.ru set ft=ruby
   au BufRead,BufNewFile Gemfile set ft=ruby
