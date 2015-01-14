@@ -163,7 +163,7 @@ augroup myfiletypes
   " Filetype modelines 
   autocmd FileType ruby,eruby,yaml set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab
   autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-  autocmd FileType puppet set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+  autocmd FileType puppet set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab commentstring=#\ %s
   autocmd FileType perl set autoindent tabstop=4 shiftwidth=4 softtabstop=4 expandtab
   autocmd FileType xml set autoindent tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab
   " treat rackup files like ruby
@@ -235,6 +235,14 @@ let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'solarized'
 let g:airline_theme = 'powerlineish'
 let g:airline#extensions#tmuxline#enabled = 0
+
+" Tabularize
+if exists(":Tabularize")
+  nmap <silent> <Leader>a= :Tabularize /=<CR>
+  vmap <silent> <Leader>a= :Tabularize /=<CR>
+  nmap <silent> <Leader>a: :Tabularize /:\zs<CR>
+  vmap <silent> <Leader>a: :Tabularize /:\zs<CR>
+endif
 
 " Lightline config
 let g:lightline = {

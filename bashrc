@@ -8,7 +8,9 @@ shopt -s histappend
 shopt -s checkwinsize
 shopt -s progcomp
 #make sure the history is updated at every command
-export PROMPT_COMMAND="history -a; history -n;"
+export PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
+# Reload current history
+alias u='history -n'
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -48,7 +50,7 @@ alias reload='source ~/.bash_profile'
 export LIBVIRT_DEFAULT_URI=qemu:///system
 
 # Set TERM for ssh sessions
-alias ssh='TERM=xterm ssh'
+alias ssh='TERM=xterm-color ssh'
 
 
 # Git aliases
