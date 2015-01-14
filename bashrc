@@ -8,7 +8,7 @@ shopt -s histappend
 shopt -s checkwinsize
 shopt -s progcomp
 #make sure the history is updated at every command
-export PROMPT_COMMAND="history -a; ${PROMPT_COMMAND}"
+export PROMPT_COMMAND="history -a;"
 # Reload current history
 alias u='history -n'
 
