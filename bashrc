@@ -32,7 +32,7 @@ if [ -d $HOME/.bashrc.d/ ]; then
 fi
 
 # Use liquidprompt
-source $HOME/Tools/liquidprompt/liquidprompt
+source $HOME/.liquidprompt/liquidprompt
 
 # rvm setup
 if [ -e $HOME/.rvm/scripts/rvm ]; then 
