@@ -1,2 +1,14 @@
 vim/bundle/
 tmux/plugins/
+vim/vim
+rvm/archives
+rvm/environments
+rvm/gems
+rvm/gemsets
+rvm/log
+rvm/patches
+rvm/patchsets
+rvm/repos
+rvm/rubies
+rvm/src
+rvm/wrappers
