@@ -12,3 +12,4 @@ rvm/repos
 rvm/rubies
 rvm/src
 rvm/wrappers
+irssi/sasl.auth
