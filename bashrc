@@ -40,6 +40,11 @@ if [ -e $HOME/.rvm/scripts/rvm ]; then
   PATH=$PATH:$HOME/.rvm/bin
 fi
 
+# packer setup
+if [ -e /opt/packer ]; then
+  PATH=$PATH:/opt/packer
+fi
+
 # Set EDITOR
 export EDITOR=vim
 

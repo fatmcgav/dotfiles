@@ -37,8 +37,6 @@
 
 # }}}
 # push/pull/diff/options {{{
-[push]
-    default = upstream
 [pull]
     default = current
 [diff]
@@ -162,9 +160,18 @@
 
     #add github remote
     ra = "!f() { git remote add $1 https://github.com/$2.git; }; f"
+
+    # Git-flow aliases
+    fi = "!git flow init -fd"
+    fs = "!git flow feature start $1"
+    ff = "!git flow feature finish $1"
+    fp = "!git flow feature publish $1"
+    fo = "!git flow feature checkout $1"
 # }}}
 
 [rerere]
 	enabled = true
 [rebase]
 	autosquash = true
+[push]
+	default = simple

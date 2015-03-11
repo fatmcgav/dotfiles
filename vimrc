@@ -28,6 +28,7 @@ Bundle 'tcl.vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'vim-svngutter'
 Bundle 'sukima/xmledit'
+Bundle 'vim-perl/vim-perl'
 
 " Testing plugins
 Bundle 'tpope/vim-rvm'
@@ -92,6 +93,7 @@ set incsearch
 set ignorecase
 set smartcase
 set showmatch
+set nofoldenable
 
 " Set terminal color
 set t_Co=256
@@ -215,8 +217,17 @@ endfunction
 autocmd BufEnter * call s:syncTree()
 
 " Syntastic
-let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_mode_map = { 'mode': 'active' }
 let g:syntastic_ruby_exec = '~/.rvm/rubies/ruby-2.0.0-p598/bin/ruby'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " CtrlP
 nnoremap <silent> t :CtrlP<cr>
