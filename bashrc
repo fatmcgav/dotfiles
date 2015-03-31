@@ -99,3 +99,6 @@ if [ -n "${__git_aliases}" ]; then
       function_exists $complete_fnc && __git_complete g$al $complete_func
   done
 fi
+
+# added by travis gem
+[ -f /home/gavinw/.travis/travis.sh ] && source /home/gavinw/.travis/travis.sh
