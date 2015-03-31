@@ -3,7 +3,11 @@ tmux/plugins/
 vim/vim
 irssi/sasl.auth
 irssi/irssi
-rvm/user/installs
 rvm/patches
 rvm/patchsets
 rvm/repos
+rvm/rubies
+rvm/src
+rvm/user
+rvm/wrappers
+irssi/sasl.auth
