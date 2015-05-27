@@ -22,6 +22,11 @@ if [ -d /etc/bash_completion.d/ ]; then
     . /etc/bash_completion.d/*
 fi
 
+# Brew completion
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
+
 # Source any bashrc.d files
 if [ -d $HOME/.bashrc.d/ ]; then
   for x in $HOME/.bashrc.d/* ; do
@@ -40,11 +45,6 @@ if [ -e $HOME/.rvm/scripts/rvm ]; then
   PATH=$PATH:$HOME/.rvm/bin
 fi
 
-# packer setup
-if [ -e /opt/packer ]; then
-  PATH=$PATH:/opt/packer
-fi
-
 # Set EDITOR
 export EDITOR=vim
 
@@ -56,33 +56,6 @@ export LIBVIRT_DEFAULT_URI=qemu:///system
 
 # Set TERM for ssh sessions
 alias ssh='TERM=xterm-color ssh'
- 
-# IRSSI helper functions
-# create the pane with irssi's nicklist
-function irssi_nickpane() {
-    tmux renamew irssi                                              # name the window
-    tmux -q setw main-pane-width $(( $(tput cols) - 21))            # set the main pane width to the total width-20
-    tmux splitw -v "cat ~/.irssi/nicklistfifo"                      # create the window and begin reading the fifo
-    tmux -q selectl main-vertical                                   # assign the layout
-    tmux selectw -t irssi                                           # select window 'irssi'
-    tmux selectp -t 0                                               # select pane 0
-    tmux send-keys -t 0 "/nicklist fifo" C-m
-}
-
-# irssi wrapper
-function irssi() {
-    irssi_nickpane
-    $(which irssi)                                                  # launch irssi
-}
-
-# repair running irssi's nicklist pane
-function irssi_repair() {
-    tmux selectw -t irssi
-    tmux selectp -t 0
-    tmux killp -a                                                   # kill all panes
-
-    irssi_nickpane
-}
 
 # Git aliases
 function_exists() {
@@ -91,14 +64,29 @@ function_exists() {
 }
 
 # Load all the __git_aliases, but only if not null... 
-if [ -n "${__git_aliases}" ]; then
-  for al in $(__git_aliases); do
-      alias g$al="git $al"
+#if [ -n "${__git_aliases}" ]; then
+for al in `__git_aliases`; do
+  alias g$al="git $al"
 
-      complete_func=_git_$(__git_aliased_command $al)
-      function_exists $complete_fnc && __git_complete g$al $complete_func
-  done
-fi
+  complete_func=_git_$(__git_aliased_command $al)
+  function_exists $complete_fnc && __git_complete g$al $complete_func
+
+  flow_complete_func=_git_$(__git_aliased_command $al)
+done
+
+complete -F __ghf ghf
+complete -F __gff gff
+
+__ghf () 
+{
+  __gitcomp "$(__git_flow_list_branches 'hotfix')"
+}
+
+__gff () 
+{
+  __gitcomp "$(__git_flow_list_branches 'feature')"
+}
+#fi
 
 # added by travis gem
 [ -f /home/gavinw/.travis/travis.sh ] && source /home/gavinw/.travis/travis.sh

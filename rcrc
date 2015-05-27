@@ -1,0 +1,2 @@
+EXCLUDES="bundle fonts README.markdown makesymlinks.sh"
+SYMLINK_DIRS="weechat zprezto solarized tmux bashrc.d liquidprompt"

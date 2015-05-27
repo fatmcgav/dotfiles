@@ -1,0 +1,69 @@
+" Not worried about old vi compatability
+if &compatible
+  set nocompatible
+end
+
+filetype off
+
+" Load Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+"########################
+" Vundle plugins
+"########################
+" Let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+" Formatting plugins 
+Bundle 'tpope/vim-sensible'
+Bundle 'surround.vim'
+Bundle 'godlygeek/tabular'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-endwise'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
+Bundle 'jiangmiao/auto-pairs'
+Bundle 'tpope/vim-commentary'
+Bundle 'tcl.vim'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'vim-svngutter'
+Bundle 'sukima/xmledit'
+Bundle 'vim-perl/vim-perl'
+
+" Testing plugins
+Bundle 'tpope/vim-rvm'
+Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-rake'
+Bundle 'thoughtbot/vim-rspec'
+Bundle 'benmills/vimux'
+Bundle 'skalnik/vim-vroom'
+
+" Tmux plugins
+Bundle 'edkolev/tmuxline.vim'
+Bundle 'edkolev/promptline.vim'
+
+" Utility plugins
+Bundle 'tpope/vim-fugitive'
+"Bundle 'bling/vim-airline'
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'kien/ctrlp.vim'
+Bundle 'rking/ag.vim'
+Bundle 'kana/vim-textobj-user'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+" Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+Bundle 'itchyny/lightline.vim'
+
+" Puppet plugins
+Bundle 'rodjek/vim-puppet'
+
+" Color scheme
+Bundle 'altercation/vim-colors-solarized'
+" set background=dark
+" colorscheme solarized
+
+" call vundle#end()
+filetype plugin indent on

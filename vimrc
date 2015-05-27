@@ -1,69 +1,3 @@
-" Not worried about old vi compatability
-set nocompatible
-filetype off
-
-" Load Vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-"########################
-" Vundle plugins
-"########################
-" Let Vundle manage Vundle
-Bundle 'gmarik/vundle'
-
-" Formatting plugins 
-Bundle 'tpope/vim-sensible'
-Bundle 'surround.vim'
-Bundle 'godlygeek/tabular'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-endwise'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'tpope/vim-commentary'
-Bundle 'tcl.vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'vim-svngutter'
-Bundle 'sukima/xmledit'
-Bundle 'vim-perl/vim-perl'
-
-" Testing plugins
-Bundle 'tpope/vim-rvm'
-Bundle 'tpope/vim-bundler'
-Bundle 'tpope/vim-rake'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'benmills/vimux'
-Bundle 'skalnik/vim-vroom'
-
-" Tmux plugins
-Bundle 'edkolev/tmuxline.vim'
-Bundle 'edkolev/promptline.vim'
-
-" Utility plugins
-Bundle 'tpope/vim-fugitive'
-"Bundle 'bling/vim-airline'
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'kien/ctrlp.vim'
-Bundle 'rking/ag.vim'
-Bundle 'kana/vim-textobj-user'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'itchyny/lightline.vim'
-
-" Puppet plugins
-Bundle 'rodjek/vim-puppet'
-
-" Color scheme
-Bundle 'altercation/vim-colors-solarized'
-set background=dark
-colorscheme solarized
-
-filetype plugin indent on
-
 " Map the leader key to ,
 let mapleader=","
 let g:mapleader=","
@@ -97,6 +31,8 @@ set nofoldenable
 
 " Set terminal color
 set t_Co=256
+set term=xterm-256color
+set termencoding=utf-8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -108,6 +44,22 @@ set backspace=indent,eol,start
 set nobackup
 set nowb
 set noswapfile
+
+" Load all the required bundles
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
+
+" Color scheme
+let hour = strftime("%H")
+" if 6 <= hour && hour < 18
+"   set background=light
+" else
+  set background=dark
+" endif
+colorscheme solarized
+
+filetype plugin indent on
 
 " Quick ESC
 imap jj <ESC>
