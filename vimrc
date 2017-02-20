@@ -1,3 +1,8 @@
+" Load all the required bundles
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
+
 " Map the leader key to ,
 let mapleader=","
 let g:mapleader=","
@@ -44,11 +49,6 @@ set backspace=indent,eol,start
 set nobackup
 set nowb
 set noswapfile
-
-" Load all the required bundles
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
 
 " Color scheme
 let hour = strftime("%H")
@@ -110,6 +110,16 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " Remap F1 from Help to ESC.  No more accidents.
 nmap <F1> <Esc>
 map! <F1> <Esc>
+
+" Support Tagbar
+nmap <F8> :TagbarToggle<CR>
+
+" Remove YCM keys
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
+
+" Disable vroom
+let g:vroom_map_keys = 0
 
 augroup myfiletypes
   " Clear old autocmds in group
@@ -210,12 +220,13 @@ endif
 " Lightline config
 let g:lightline = {
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], 
+      \   'left': [ [ 'mode', 'paste' ], ['obsession'], 
       \             [ 'fugitive', 'filename' ], ['ctrlpmakr', 'rvm'] ],
       \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component': {
-      \   'rvm': '%{rvm#statusline()}'
+      \   'rvm': '%{rvm#statusline()}',
+      \   'obsession': '%{ObsessionStatus(''T'','''')}'
       \ },
       \ 'component_function': {
       \   'fugitive': 'MyFugitive',
@@ -301,6 +312,7 @@ endfunction
 augroup AutoSyntastic
   autocmd!
   autocmd BufWritePost *.c,*.cpp call s:syntastic()
+  autocmd BufWritePost *.pp call s:syntastic()
 augroup END
 function! s:syntastic()
   SyntasticCheck
@@ -319,6 +331,8 @@ endfunction
 set title
 "autocmd BufRead * let &titlestring = expand("%:p")
 set titlestring=VIM:\ %-25.55F\ %a%r%m titlelen=70
+
+
 
 "#############################
 " Useful functions below
@@ -370,3 +384,4 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
+

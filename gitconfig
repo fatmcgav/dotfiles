@@ -2,6 +2,7 @@
 [core]
 	editor = vim
 	filemode = false
+	excludesfile = /Users/gavinw/.gitignore_global
 #    excludesfile = /Users/npaolucci/.gitignore_global
 #    pager=less -x4
 
@@ -10,6 +11,7 @@
 [user]
     email = fatmcgav@gmail.com 
     name = Gavin Williams
+	signingkey = 6549753FA5036E9A
 
 #}}}
 # color {{{
@@ -58,6 +60,7 @@
 # }}}
 # alias {{{
 [alias]
+    work = config user.email gavin.williams@weareact.com
     st = status -s
 
     cl = clone
@@ -175,3 +178,7 @@
 	autosquash = true
 [push]
 	default = simple
+[http]
+	cookiefile = /Users/gavinw/.gitcookies
+[gpg]
+	program = gpg2

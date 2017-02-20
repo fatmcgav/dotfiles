@@ -28,10 +28,17 @@ Bundle 'honza/vim-snippets'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'tpope/vim-commentary'
 Bundle 'tcl.vim'
+Bundle 'majutsushi/tagbar'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'vim-svngutter'
 Bundle 'sukima/xmledit'
 Bundle 'vim-perl/vim-perl'
+Bundle 'fatih/vim-go'
+Bundle 'hashivim/vim-terraform'
+
+" Completion plugins
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'ervandew/supertab'
 
 " Testing plugins
 Bundle 'tpope/vim-rvm'
@@ -44,6 +51,7 @@ Bundle 'skalnik/vim-vroom'
 " Tmux plugins
 Bundle 'edkolev/tmuxline.vim'
 Bundle 'edkolev/promptline.vim'
+Bundle 'christoomey/vim-tmux-navigator'
 
 " Utility plugins
 Bundle 'tpope/vim-fugitive'
@@ -56,6 +64,7 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 " Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'itchyny/lightline.vim'
+Bundle "tpope/vim-obsession"
 
 " Puppet plugins
 Bundle 'rodjek/vim-puppet'

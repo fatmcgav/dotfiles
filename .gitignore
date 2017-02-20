@@ -1,5 +1,6 @@
 vim/bundle/
 tmux/plugins/
+tmux/resurrect/
 vim/vim
 irssi/sasl.auth
 irssi/irssi
@@ -11,4 +12,3 @@ rvm/rubies
 rvm/src
 rvm/user
 rvm/wrappers
-irssi/sasl.auth
