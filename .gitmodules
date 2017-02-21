@@ -1,0 +1,6 @@
+[submodule "zprezto"]
+	path = zprezto
+	url = https://github.com/fatmcgav/prezto.git
+[submodule "powerline"]
+  path = fonts/powerline-fonts
+  url = https://github.com/powerline/fonts.gi
