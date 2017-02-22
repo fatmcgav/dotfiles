@@ -12,3 +12,4 @@ rvm/rubies
 rvm/src
 rvm/user
 rvm/wrappers
+**/.DS_Store
