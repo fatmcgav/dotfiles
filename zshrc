@@ -1,22 +1,4 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
-# # Source Prezto.
-# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-#   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-# fi
-
-# # Customize to your needs...
-# # Additional aliases
-# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/aliases.zsh"  ]]; then
-#   source "${ZDOTDIR:-$HOME}/.zprezto/aliases.zsh"
-# fi
-
-# Testing Zplug
+# Use Zplug
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
@@ -28,6 +10,7 @@ zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
 # Configure Powerlevel9k
 POWERLEVEL9K_MODE='awesome-patched'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_SHOW_CHANGESET=true
 # POWERLEVEL9K_VCS_GIT_ICON=''
 # POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
 # POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
@@ -39,8 +22,8 @@ POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
 #POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status background_jobs dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(rvm time)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status background_jobs context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(rvm virtualenv time)
 
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
@@ -113,12 +96,20 @@ setopt hist_ignore_all_dups
 setopt hist_lex_words
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
-setopt share_history
+unsetopt share_history
+# setopt share_history
 export HISTSIZE=11000
 export SAVEHIST=10000
 export HISTFILE=~/.zsh_history
 
+# Set default username
 export DEFAULT_USER="gavinw"
+
+# Key bindings
+bindkey "^[[1~"  beginning-of-line
+bindkey "^[[4~"  end-of-line
+bindkey "^[[3~"  delete-char
+bindkey "^[3;5~" delete-char
 
 # Use vim :) 
 export EDITOR='vim'
@@ -130,7 +121,6 @@ ulimit -n 2048
 #
 ## Setup GO Dev
 #
-
 export GOPATH=$HOME/golang
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
