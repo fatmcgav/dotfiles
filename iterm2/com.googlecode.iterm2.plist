@@ -49,18 +49,27 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
+	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<dict>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>-642 111 445 103 -3360 0 3360 1027 </string>
+	<string>-1540 57 433 296 -3360 0 3360 1027 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>530 477 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>-1393 187 918 495 -3360 0 3360 1027 </string>
+	<string>-1393 129 937 465 -3360 0 3360 1027 </string>
+	<key>NSWindow Frame UKCrashReporter</key>
+	<string>-3037 443 592 584 -3360 0 3360 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-944 354 984 673 0 0 1680 1027 </string>
+	<string>-3359 10 1677 1017 -3360 0 3360 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>-1054 55 774 877 -3360 0 3360 1027 </string>
+	<string>-1680 10 1677 1017 -3360 0 3360 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>-2919 124 984 673 -3360 0 3360 1027 </string>
+	<string>-1679 220 837 807 -3360 0 3360 1027 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>-2802 575 1033 402 -3360 0 3360 1027 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -625,11 +634,11 @@
 			<key>Name</key>
 			<string>Default</string>
 			<key>Non Ascii Font</key>
-			<string>Monaco 12</string>
+			<string>SourceCodePro+Powerline+AwesomeRegular 12</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Menlo-Regular 14</string>
+			<string>DroidSansMonoAwesome 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -751,6 +760,8 @@
 	<date>2017-02-21T14:17:42Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>UKCrashReporterLastCrashReportDate</key>
+	<real>1487698816</real>
 	<key>WordCharacters</key>
 	<string>§</string>
 	<key>iTerm Version</key>
