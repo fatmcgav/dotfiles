@@ -33,6 +33,7 @@ set ignorecase
 set smartcase
 set showmatch
 set nofoldenable
+set whichwrap+=<,>,h,l,[,]
 
 " Set terminal color
 set t_Co=256
