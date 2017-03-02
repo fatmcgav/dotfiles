@@ -1,2 +1,2 @@
 EXCLUDES="bundle fonts README.markdown makesymlinks.sh zprezto.orig"
-SYMLINK_DIRS="vim weechat zprezto solarized tmux bashrc.d liquidprompt iterm2"
+SYMLINK_DIRS="vim weechat zprezto solarized tmux bashrc.d liquidprompt iterm2 hammerspoon scripts"
