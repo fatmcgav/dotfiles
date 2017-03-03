@@ -44,7 +44,7 @@ zplug "modules/osx", from:prezto
 zplug "modules/python", from:prezto
 zplug "modules/rsync", from:prezto
 zplug "modules/ruby", from:prezto
-# zplug "modules/ssh", from:prezto
+zplug "modules/ssh", from:prezto
 zplug "modules/terminal", from:prezto
 zplug "modules/tmux", from:prezto
 zplug "modules/utility", from:prezto
@@ -78,6 +78,17 @@ if ! zplug check --verbose; then
         echo; zplug install
     fi
 fi
+
+# checks if a plugin is installed via zplug
+_is_installed() {
+  zplug list | grep -q "$@"
+}
+
+# Load SSH Identities
+if _is_installed 'modules/ssh'; then
+  zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa-github' 'id_rsa-k5'
+fi
+
 
 zplug load
 
