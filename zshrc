@@ -55,17 +55,17 @@ zplug "peterhurford/git-it-on.zsh"
 zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
 zplug "Tarrasch/zsh-autoenv", defer:2
 zplug "trapd00r/LS_COLORS", use:"LS_COLORS", as:command, defer:3
-zplug 'Valodim/zsh-curl-completion'
+# zplug 'Valodim/zsh-curl-completion'
 zplug "zsh-users/zsh-completions"
 # zplug "zsh-users/zsh-autosuggestions", defer:2
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
-zplug "b4b4r07/http_code", as:command, use:bin
-zplug "mrowa44/emojify", \
-	from:github, \
-	as:command
+# # zplug "b4b4r07/http_code", as:command, use:bin
+# zplug "mrowa44/emojify", \
+# 	from:github, \
+# 	as:command
 zplug "stedolan/jq", \
 	as:command, \
 	from:gh-r, \
@@ -123,12 +123,15 @@ bindkey "^[[4~"  end-of-line
 bindkey "^[[3~"  delete-char
 bindkey "^[3;5~" delete-char
 
-# Use vim :) 
+# Use vim :)
 export EDITOR='vim'
 export VISUAL='vim'
 
 # Increase default ulimit
 ulimit -n 2048
+
+# Enable direnv
+eval "$(direnv hook zsh)"
 
 #
 ## Setup GO Dev
@@ -140,6 +143,9 @@ export PATH=$PATH:$GOROOT/bin
 
 # Homebrew Github
 export HOMEBREW_GITHUB_API_TOKEN=8cc8f58ec05aa7963c63d374c7c0cf08286fc3ff
+
+# Add Brew sbin dir to PATH
+export PATH="$PATH:/usr/local/sbin"
 
 # Additional aliases
 if [[ -s "${ZDOTDIR:-$HOME}/.dotfiles/aliases.zsh"  ]]; then

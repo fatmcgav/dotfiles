@@ -35,10 +35,18 @@ Bundle 'sukima/xmledit'
 Bundle 'vim-perl/vim-perl'
 Bundle 'fatih/vim-go'
 Bundle 'hashivim/vim-terraform'
+" Bundle 'fatih/vim-hclfmt'
+Bundle 'martinda/Jenkinsfile-vim-syntax'
+Bundle 'junegunn/vim-easy-align'
 
 " Completion plugins
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
+Bundle "Shougo/neocomplete.vim"
+Bundle "Shougo/neosnippet.vim"
+Bundle "Shougo/neosnippet-snippets"
 Bundle 'ervandew/supertab'
+Bundle 'craigemery/vim-autotag'
+Bundle 'taglist.vim'
 
 " Testing plugins
 Bundle 'tpope/vim-rvm'

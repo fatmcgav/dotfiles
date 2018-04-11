@@ -68,3 +68,22 @@ alias dm-ip='docker-machine ip `docker-machine active`'
 alias dm-env='docker-machine env `docker-machine active`'
 alias dm-inspect='docker-machine inspect `docker-machine active`'
 alias dm-config='docker-machine config `docker-machine active`'
+
+
+# Openstack token utilities
+function ostoken() {
+  token=$(openstack token issue -c id -f value)
+  echo $token
+}
+
+function oshttp() {                                     
+  token=$(openstack token issue -c id -f value)
+  methods=(GET POST PUT DELETE)
+  if ((${methods[(Ie)$2]})); then
+    method=$2
+  else 
+    method='GET'
+  fi
+
+  http $method $1 "X-Auth-Token:$token"
+}

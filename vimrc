@@ -119,6 +119,49 @@ nmap <F8> :TagbarToggle<CR>
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
 
+" "" Neocomplete settings
+" " Enable Neocomplete
+" let g:neocomplete#enable_at_startup = 1
+" " Use smartcase.
+" let g:neocomplete#enable_smart_case = 1
+" " Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" " Define dictionary.
+" let g:neocomplete#sources#dictionary#dictionaries = {
+"     \ 'default' : '',
+"     \ 'vimshell' : $HOME.'/.vimshell_hist',
+"     \ 'scheme' : $HOME.'/.gosh_completions'
+"         \ }
+
+" " Define keyword.
+" if !exists('g:neocomplete#keyword_patterns')
+"     let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" " Plugin key-mappings.
+" inoremap <expr><C-g>     neocomplete#undo_completion()
+" inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" " Recommended key-mappings.
+" " <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+"   " For no inserting <CR> key.
+"   "return pumvisible() ? "\<C-y>" : "\<CR>"
+" endfunction
+" " <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" " <C-h>, <BS>: close popup and delete backword char.
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+" " " go language
+" let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
+"                            \ 'v:variable;f:function'
+
 " Disable vroom
 let g:vroom_map_keys = 0
 
@@ -217,6 +260,9 @@ if exists(":Tabularize")
   nmap <silent> <Leader>a: :Tabularize /:\zs<CR>
   vmap <silent> <Leader>a: :Tabularize /:\zs<CR>
 endif
+
+" Vim-terraform
+let g:terraform_fmt_on_save = 1
 
 " Lightline config
 let g:lightline = {
@@ -333,7 +379,46 @@ set title
 "autocmd BufRead * let &titlestring = expand("%:p")
 set titlestring=VIM:\ %-25.55F\ %a%r%m titlelen=70
 
+ " Disable AutoComplPop.
+ let g:acp_enableAtStartup = 0
+ " Use neocomplete.
+ let g:neocomplete#enable_at_startup = 1
+ " Use smartcase.
+ let g:neocomplete#enable_smart_case = 1
+ " Set minimum syntax keyword length.
+ let g:neocomplete#sources#syntax#min_keyword_length = 3
 
+ " Plugin key-mappings.
+ inoremap <expr><C-g>     neocomplete#undo_completion()
+ inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+ " Recommended key-mappings.
+ " <CR>: close popup and save indent.
+ inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+ function! s:my_cr_function()
+     return neocomplete#close_popup() . "\<CR>"
+ endfunction
+ " <TAB>: completion.
+ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+ " <C-h>, <BS>: close popup and delete backword char.
+ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+ inoremap <expr><C-y>  neocomplete#close_popup()
+ inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+ " Go related mappings
+ au FileType go nmap <Leader>i <Plug>(go-info)
+ au FileType go nmap <Leader>gd <Plug>(go-doc)
+ au FileType go nmap <Leader>r <Plug>(go-run)
+ au FileType go nmap <Leader>b <Plug>(go-build)
+ au FileType go nmap <Leader>t <Plug>(go-test)
+ au FileType go nmap gd <Plug>(go-def-tab)
+
+ " By default syntax-highlighting for Functions, Methods and Structs is disabled.
+" Let's enable them!
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
 
 "#############################
 " Useful functions below
@@ -386,3 +471,5 @@ augroup reload_vimrc " {
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
 
+" Disable YCM
+let g:loaded_youcompleteme = 1

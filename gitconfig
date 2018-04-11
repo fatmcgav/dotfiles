@@ -182,3 +182,7 @@
 	cookiefile = /Users/gavinw/.gitcookies
 [gpg]
 	program = gpg2
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[remote "origin"]
+	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
