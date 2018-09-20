@@ -2,16 +2,15 @@
 [core]
 	editor = vim
 	filemode = false
-	excludesfile = /Users/gavinw/.gitignore_global
-#    excludesfile = /Users/npaolucci/.gitignore_global
-#    pager=less -x4
+	excludesfile = /Users/fatmcgav/.gitignore_global
 
 #}}}
 # user {{{
-[user]
-    email = fatmcgav@gmail.com 
-    name = Gavin Williams
-	signingkey = 6549753FA5036E9A
+[includeIf "gitdir:~/"]
+  path = .gitconfig-personal
+
+[includeIf "gitdir:~/Work/"]
+  path = .gitconfig-work
 
 #}}}
 # color {{{
@@ -60,8 +59,10 @@
 # }}}
 # alias {{{
 [alias]
-    work = config user.email gavin.williams@weareact.com
+    work = config user.email gavin.williams@elastic.co
     st = status -s
+
+    root = rev-parse --show-toplevel
 
     cl = clone
 
@@ -170,6 +171,9 @@
     ff = "!git flow feature finish $1"
     fp = "!git flow feature publish $1"
     fo = "!git flow feature checkout $1"
+
+    # Prune gone branches
+    prune-branches = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -d
 # }}}
 
 [rerere]
@@ -179,10 +183,14 @@
 [push]
 	default = simple
 [http]
-	cookiefile = /Users/gavinw/.gitcookies
+	cookiefile = /Users/fatmcgav/.gitcookies
 [gpg]
 	program = gpg2
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [remote "origin"]
 	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
+[github]
+	user = fatmcgav
+[ghi]
+	token = !security find-internet-password -a fatmcgav -s github.com -l 'ghi token' -w

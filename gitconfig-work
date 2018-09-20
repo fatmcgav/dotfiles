@@ -1,0 +1,12 @@
+# Gitconfig Work
+[user]
+  email = gavin.williams@elastic.co
+  name = Gavin Williams
+  signingkey = 06A323FB7F1015CA
+  
+[commit]
+  gpgsign = true
+
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg2
+
