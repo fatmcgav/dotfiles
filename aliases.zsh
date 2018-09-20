@@ -14,6 +14,10 @@ function vim() {
   fi
 }
 
+# Util aliases
+alias whatismyip='curl ipinfo.io/ip'
+
+
 # SSH using TERM
 alias ssh='TERM=xterm-color ssh'
 
@@ -87,3 +91,26 @@ function oshttp() {
 
   http $method $1 "X-Auth-Token:$token"
 }
+
+# Ansible SSH
+# alias assh="cd $WORK/infra/master_i/ansible && ssh -F ./ssh_config $1"
+function assh () {
+  host="$1"
+
+  root=$(git root)
+  if [ $? -eq 0 ]; then
+    cd "${root}/ansible"
+    ssh -F ./ssh_config "$host"
+  else
+    cd $WORK/infra/master_i/ansible
+    ssh -F ./ssh_config "$host"
+  fi
+}
+
+function bssh () {
+    host="$1"
+    args="${@:2}"
+    cd $WORK/infra/master_i/ansible
+    vault ssh -role bastion -mode otp -user-known-hosts-file=.known_hosts $@ -F ./ssh_config
+}
+
