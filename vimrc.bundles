@@ -38,6 +38,8 @@ Bundle 'hashivim/vim-terraform'
 " Bundle 'fatih/vim-hclfmt'
 Bundle 'martinda/Jenkinsfile-vim-syntax'
 Bundle 'junegunn/vim-easy-align'
+Bundle 'vim-python/python-syntax'
+Bundle 'niftylettuce/Vim-Jinja2-Syntax'
 
 " Completion plugins
 " Bundle 'Valloric/YouCompleteMe'
@@ -47,6 +49,7 @@ Bundle "Shougo/neosnippet-snippets"
 Bundle 'ervandew/supertab'
 Bundle 'craigemery/vim-autotag'
 Bundle 'taglist.vim'
+Bundle "davidhalter/jedi-vim"
 
 " Testing plugins
 Bundle 'tpope/vim-rvm'
@@ -64,21 +67,27 @@ Bundle 'christoomey/vim-tmux-navigator'
 " Utility plugins
 Bundle 'tpope/vim-fugitive'
 "Bundle 'bling/vim-airline'
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'kien/ctrlp.vim'
+" Bundle 'scrooloose/nerdtree'
+" Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'rking/ag.vim'
 Bundle 'kana/vim-textobj-user'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 " Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'itchyny/lightline.vim'
 Bundle "tpope/vim-obsession"
+Bundle "dhruvasagar/vim-prosession"
+Bundle "gikmx/vim-ctrlposession"
 
+" Ansible plugins
+Bundle 'pearofducks/ansible-vim'
+ 
 " Puppet plugins
 Bundle 'rodjek/vim-puppet'
 
 " Color scheme
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'morhetz/gruvbox'
 " set background=dark
 " colorscheme solarized
 

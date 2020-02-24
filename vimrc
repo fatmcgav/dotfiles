@@ -56,9 +56,10 @@ let hour = strftime("%H")
 " if 6 <= hour && hour < 18
 "   set background=light
 " else
-  set background=dark
+"   set background=dark
 " endif
-colorscheme solarized
+set background=dark
+colorscheme gruvbox
 
 filetype plugin indent on
 
@@ -187,44 +188,44 @@ let g:vroom_use_vimux = 1
 " tcl.vim
 let tcl_extended_syntax = 1
 
-" NERDTree
-" Launch on start
-"autocmd VimEnter * NERDTree
-"autocmd VimEnter * wincmd p
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"" NERDTree
+"" Launch on start
+""autocmd VimEnter * NERDTree
+""autocmd VimEnter * wincmd p
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-" Auto close NERDTree if last buffer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"" Auto close NERDTree if last buffer
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-"nmap <leader>n :NERDTreeToggle<CR>
-map <leader>n <plug>NERDTreeTabsToggle<CR>
-let NERDTreeHighlightCursorline=1
-let NERDTreeQuitOnOpen = 1
-let NERDTreeShowHidden = 1
-let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg', '\.git', '\.svn']
-"map <C-o> :NERDTreeToggle %<CR>
+""nmap <leader>n :NERDTreeToggle<CR>
+"map <leader>n <plug>NERDTreeTabsToggle<CR>
+"let NERDTreeHighlightCursorline=1
+"let NERDTreeQuitOnOpen = 1
+"let NERDTreeShowHidden = 1
+"let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg', '\.git', '\.svn']
+""map <C-o> :NERDTreeToggle %<CR>
 
-" Check if NERDTree is open or active
-function! s:isNERDTreeOpen()        
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
+"" Check if NERDTree is open or active
+"function! s:isNERDTreeOpen()        
+"  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+"endfunction
  
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! s:syncTree()
-  if &modifiable && s:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeTabsFind
-    wincmd p
-  endif
-endfunction
+"" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+"" file, and we're not in vimdiff
+"function! s:syncTree()
+"  if &modifiable && s:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+"    NERDTreeTabsFind
+"    wincmd p
+"  endif
+"endfunction
  
-" Highlight currently open buffer in NERDTree
-autocmd BufEnter * call s:syncTree()
+"" Highlight currently open buffer in NERDTree
+"autocmd BufEnter * call s:syncTree()
 
 " Syntastic
-let g:syntastic_mode_map = { 'mode': 'active' }
-let g:syntastic_ruby_exec = '~/.rvm/rubies/ruby-2.0.0-p598/bin/ruby'
+" let g:syntastic_mode_map = { 'mode': 'active' }
+" let g:syntastic_ruby_exec = '~/.rvm/rubies/ruby-2.4.1/bin/ruby'
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -241,6 +242,9 @@ let g:ctrlp_working_path_mode = 2
 let g:ctrlp_by_filename = 1
 let g:ctrlp_max_files = 600
 let g:ctrlp_max_depth = 5
+
+" CtrlPObsession
+nnoremap <Leader>ss :CtrlPObsession<CR>
 
 " Utilsnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -267,7 +271,7 @@ let g:terraform_fmt_on_save = 1
 " Lightline config
 let g:lightline = {
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], ['obsession'], 
+      \   'left': [ [ 'mode', 'paste' ], ['sessionname'], 
       \             [ 'fugitive', 'filename' ], ['ctrlpmakr', 'rvm'] ],
       \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
@@ -280,6 +284,7 @@ let g:lightline = {
       \   'readonly': 'MyReadonly',
       \   'modified': 'MyModified',
       \   'filename': 'MyFilename',
+      \   'sessionname': 'SessionName',
       \   'ctrlpmark': 'CtrlPMark',
       \ },
       \ 'component_expand': {
@@ -327,6 +332,10 @@ function! MyFilename()
   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! SessionName()
+  return matchstr(v:this_session, '\v\%\zs(\a*)\.vim')
 endfunction
 
 function! CtrlPMark()
@@ -419,6 +428,9 @@ set titlestring=VIM:\ %-25.55F\ %a%r%m titlelen=70
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
+
+" Python syntax args
+let g:syntastic_python_flake8_args='--ignore=E501,E225'
 
 "#############################
 " Useful functions below

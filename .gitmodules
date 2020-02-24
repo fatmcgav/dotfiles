@@ -4,7 +4,7 @@
 	; url = https://github.com/zsh-users/prezto.git
 [submodule "powerline"]
   path = fonts/powerline-fonts
-  url = https://github.com/powerline/fonts.gi
+  url = https://github.com/powerline/fonts.git
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm

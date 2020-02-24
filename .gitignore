@@ -13,3 +13,4 @@ rvm/src
 rvm/user
 rvm/wrappers
 **/.DS_Store
+zshrc.local

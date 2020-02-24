@@ -5,7 +5,8 @@ export ZPLUG_HOME=/usr/local/opt/zplug
 #export _ZPLUG_PREZTO="zsh-users/prezto"
 
 # Use powerlevel9k theme
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Configure Powerlevel9k
 POWERLEVEL9K_MODE='awesome-patched'
@@ -48,7 +49,10 @@ source $ZPLUG_HOME/init.zsh
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
 # Setup p9k
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+# zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+
+# Powerlevel10k 
+zplug "romkatv/powerlevel10k", as:theme, depth:1
 
 # Add prezto
 zplug "sorin-ionescu/prezto", use:init.zsh, hook-build:"ln -s $ZPLUG_HOME/repos/sorin-ionescu/prezto ~/.zprezto"
@@ -78,9 +82,12 @@ zplug "peterhurford/git-it-on.zsh"
 zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
 zplug "Tarrasch/zsh-autoenv", defer:2
 zplug "trapd00r/LS_COLORS", use:"LS_COLORS", as:command, defer:3
+
+# Taskwarrior
+zplug "plugins/taskwarrior", from:oh-my-zsh
+
 # zplug 'Valodim/zsh-curl-completion'
 # zplug "zsh-users/zsh-completions"
-# zplug "zsh-users/zsh-autosuggestions", defer:2
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
@@ -91,6 +98,7 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
 # zplug "/usr/local/share/zsh/functions", from:local, use:"*", defer:2
 
+zplug "dbz/kube-aliases"
 
 # # zplug "b4b4r07/http_code", as:command, use:bin
 # zplug "mrowa44/emojify", \
@@ -119,7 +127,7 @@ if _is_installed 'modules/ssh'; then
   zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa-github' 'id_rsa-k5'
 fi
 
-
+# Load zplug!
 zplug load
 
 export TERM=xterm-256color
@@ -246,6 +254,9 @@ if [[ -s "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completio
   source "`brew --prefix`/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 fi
 
+# Add kubesh to path
+export PATH="~/.kubesh/bin:$PATH"
+
 # Local stuff, not from Git
 if [[ -s "${ZDOTDIR:-$HOME}/.dotfiles/zshrc.local"  ]]; then
   source "${ZDOTDIR:-$HOME}/.dotfiles/zshrc.local"
@@ -255,6 +266,11 @@ fi
 if [[ -d '/opt/puppetlabs/pdk/bin' ]]; then
   export PATH="$PATH:/opt/puppetlabs/pdk/bin"
 fi
+
+# Taskwarrior aliases
+alias in="task add +in"
+alias inbox="task in"
+alias next="task next"
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`

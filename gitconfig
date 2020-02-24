@@ -173,7 +173,22 @@
     fo = "!git flow feature checkout $1"
 
     # Prune gone branches
-    prune-branches = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -d
+    prune-branches = !git remote prune origin && git remote prune upstream && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -d
+
+    # Get the current branch name (not so useful in itself, but used in
+    # other aliases)
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    # Push the current branch to the remote "origin", and set it to track
+    # the upstream branch
+    publish = "!git push -u origin $(git branch-name)"
+    # Delete the remote version of the current branch
+    unpublish = "!git push origin :$(git branch-name)"
+
+    # Pull changes from origin, upstream and then merge master
+    pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master; git push"
+
+    # Sync upstream
+    sync = !git fetch --prune upstream && git rebase -p --autostash $1
 # }}}
 
 [rerere]
