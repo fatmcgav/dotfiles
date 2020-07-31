@@ -23,7 +23,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-endwise'
 Bundle 'plasticboy/vim-markdown'
-Bundle 'SirVer/ultisnips'
+" Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'tpope/vim-commentary'
@@ -44,8 +44,8 @@ Bundle 'niftylettuce/Vim-Jinja2-Syntax'
 " Completion plugins
 " Bundle 'Valloric/YouCompleteMe'
 Bundle "Shougo/neocomplete.vim"
-Bundle "Shougo/neosnippet.vim"
-Bundle "Shougo/neosnippet-snippets"
+" Bundle "Shougo/neosnippet.vim"
+" Bundle "Shougo/neosnippet-snippets"
 Bundle 'ervandew/supertab'
 Bundle 'craigemery/vim-autotag'
 Bundle 'taglist.vim'

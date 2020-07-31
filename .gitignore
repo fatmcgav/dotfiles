@@ -2,6 +2,7 @@ vim/bundle/
 tmux/plugins/
 tmux/resurrect/
 vim/vim
+vim/session
 irssi/sasl.auth
 irssi/irssi
 rvm

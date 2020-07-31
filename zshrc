@@ -1,5 +1,12 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Use Zplug
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=$HOME/.zplug
 
 # Prezto
 #export _ZPLUG_PREZTO="zsh-users/prezto"
@@ -67,8 +74,6 @@ zplug "modules/fasd", from:prezto
 zplug "modules/git", from:prezto
 zplug "modules/gnu-utility", from:prezto
 zplug "modules/history", from:prezto
-zplug "modules/homebrew", from:prezto
-zplug "modules/osx", from:prezto
 zplug "modules/python", from:prezto
 zplug "modules/rsync", from:prezto
 # zplug "modules/ruby", from:prezto
@@ -122,6 +127,9 @@ _is_installed() {
   zplug list | grep -q "$@"
 }
 
+# OS Specific config
+source "${ZDOTDIR:-${HOME}}/.zshrc-`uname`"
+
 # Load SSH Identities
 if _is_installed 'modules/ssh'; then
   zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa-github' 'id_rsa-k5'
@@ -131,9 +139,6 @@ fi
 zplug load
 
 export TERM=xterm-256color
-
-# Add to fpath
-export fpath=($(brew --prefix)/share/zsh-completions $(brew --prefix)/share/zsh/functions $fpath)
 
 # dircolors
 eval `dircolors $ZPLUG_HOME/repos/seebi/dircolors-solarized/dircolors.256dark`
@@ -189,11 +194,6 @@ eval "$(direnv hook zsh)"
 # Ctags
 alias ctags="`brew --prefix`/bin/ctags"
 
-# Setup Hub
-if [[ 'brew info hub'  ]]; then
-  alias git="`brew --prefix hub`/bin/hub"
-fi
-
 #
 ## Setup GO Dev
 #
@@ -205,12 +205,6 @@ export PATH=$PATH:$GOPATH/bin
 # Set Go default version
 export GIMME_GO_VERSION='1.8.1'
 eval "$(gimme)" 2>/dev/null
-
-# Add coreutils to path
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
-
-# Add Brew sbin dir to PATH
-export PATH="$PATH:/usr/local/sbin"
 
 # Additional aliases
 if [[ -s "${ZDOTDIR:-$HOME}/.dotfiles/aliases.zsh"  ]]; then
@@ -249,11 +243,6 @@ else
 fi
 
 
-# Load gcloud completions
-if [[ -s "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" ]]; then
-  source "`brew --prefix`/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-fi
-
 # Add kubesh to path
 export PATH="~/.kubesh/bin:$PATH"
 
@@ -278,3 +267,6 @@ alias next="task next"
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
