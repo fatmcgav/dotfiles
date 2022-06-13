@@ -43,7 +43,7 @@ POWERLEVEL9K_BATTERY_LOW_FOREGROUND=black
 POWERLEVEL9K_GO_VERSION_BACKGROUND=blue
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status background_jobs context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(custom_vault_cluster go_version rvm virtualenv battery time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(kube_ps1 custom_vault_cluster go_version rvm virtualenv battery time)
 
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
@@ -58,7 +58,7 @@ zplug "zplug/zplug", hook-build:"zplug --self-manage"
 # Setup p9k
 # zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
 
-# Powerlevel10k 
+# # Powerlevel10k 
 zplug "romkatv/powerlevel10k", as:theme, depth:1
 
 # Add prezto
@@ -82,6 +82,7 @@ zplug "modules/terminal", from:prezto
 zplug "modules/tmux", from:prezto
 zplug "modules/utility", from:prezto
 
+zplug "jonmosco/kube-ps1"
 zplug "hlissner/zsh-autopair", defer:2
 zplug "peterhurford/git-it-on.zsh"
 zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
@@ -94,8 +95,12 @@ zplug "plugins/taskwarrior", from:oh-my-zsh
 # zplug 'Valodim/zsh-curl-completion'
 # zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search", defer:3
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
+  --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
+zplug "plugins/fzf", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 zplug "zsh-users/zsh-autosuggestions", at:v0.4.3, defer:3
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=yellow,bold'
@@ -103,7 +108,9 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
 # zplug "/usr/local/share/zsh/functions", from:local, use:"*", defer:2
 
+# kubectl plugins
 zplug "dbz/kube-aliases"
+zplug "plugins/kubectl", from:oh-my-zsh
 
 # # zplug "b4b4r07/http_code", as:command, use:bin
 # zplug "mrowa44/emojify", \
@@ -127,16 +134,16 @@ _is_installed() {
   zplug list | grep -q "$@"
 }
 
-# OS Specific config
-source "${ZDOTDIR:-${HOME}}/.zshrc-`uname`"
-
 # Load SSH Identities
 if _is_installed 'modules/ssh'; then
-  zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa-github' 'id_rsa-k5'
+  zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa-github'
 fi
 
 # Load zplug!
 zplug load
+
+# OS Specific config
+source "${ZDOTDIR:-${HOME}}/.zshrc-`uname`"
 
 export TERM=xterm-256color
 
@@ -166,6 +173,7 @@ setopt hist_ignore_all_dups
 setopt hist_lex_words
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
+setopt inc_append_history
 unsetopt share_history
 # setopt share_history
 export HISTSIZE=11000
@@ -188,11 +196,8 @@ export VISUAL='vim'
 # Increase default ulimit
 ulimit -n 2048
 
-# Enable direnv
-eval "$(direnv hook zsh)"
-
-# Ctags
-alias ctags="`brew --prefix`/bin/ctags"
+# # Enable direnv
+# eval "$(direnv hook zsh)"
 
 #
 ## Setup GO Dev
@@ -202,9 +207,9 @@ export GOPATH=$HOME/Go
 export PATH=$PATH:$GOPATH/bin
 # export PATH=$PATH:$GOROOT/bin
 
-# Set Go default version
-export GIMME_GO_VERSION='1.8.1'
-eval "$(gimme)" 2>/dev/null
+# # Set Go default version
+# export GIMME_GO_VERSION='1.8.1'
+# eval "$(gimme)" 2>/dev/null
 
 # Additional aliases
 if [[ -s "${ZDOTDIR:-$HOME}/.dotfiles/aliases.zsh"  ]]; then
@@ -227,8 +232,8 @@ fi
 # set where virutal environments will live
 export WORKON_HOME=$HOME/.virtualenvs
 # Use system Python version
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
 # ensure all new environments are isolated from the site-packages directory
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 # use the same directory for virtualenvs as virtualenvwrapper
@@ -236,8 +241,8 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 # makes pip detect an active virtualenv and install to it
 export PIP_RESPECT_VIRTUALENV=true
 # Load virtualenvwrapper if present
-if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
-    source /usr/local/bin/virtualenvwrapper.sh
+if [[ -r /usr/bin/virtualenvwrapper.sh ]]; then
+    source /usr/bin/virtualenvwrapper.sh
 else
   echo "WARNING: Can't find virtualenvwrapper.sh"
 fi
@@ -247,8 +252,8 @@ fi
 export PATH="~/.kubesh/bin:$PATH"
 
 # Local stuff, not from Git
-if [[ -s "${ZDOTDIR:-$HOME}/.dotfiles/zshrc.local"  ]]; then
-  source "${ZDOTDIR:-$HOME}/.dotfiles/zshrc.local"
+if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.local"  ]]; then
+  source "${ZDOTDIR:-$HOME}/.zshrc.local"
 fi
 
 # Puppet tools
@@ -260,6 +265,11 @@ fi
 alias in="task add +in"
 alias inbox="task in"
 alias next="task next"
+
+# Pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`

@@ -1,0 +1,27 @@
+# Linux specific configurations
+
+# ASDF-VM
+export ASDF_DIR=/opt/asdf-vm
+zplug "plugins/asdf", from:oh-my-zsh
+
+zplug load
+
+#export PATH="${ASDF_HOME}/bin:$PATH"
+
+# Setup gcloud completions
+source "$HOME/.asdf/installs/gcloud/303.0.0/completion.zsh.inc"
+
+# Hook asdf direnv into your shell.
+eval "$(asdf exec direnv hook zsh)"
+
+# Silence Direnv
+export DIRENV_LOG_FORMAT=""
+
+# A shortcut for asdf managed direnv.
+direnv() { asdf exec direnv "$@"; }
+
+# # Setup FZF
+# if [[ -d "/usr/share/fzf"  ]]; then
+#   source "/usr/share/fzf/completion.zsh"
+#   source "/usr/share/fzf/key-bindings.zsh"
+# fi

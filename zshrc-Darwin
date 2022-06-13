@@ -22,3 +22,5 @@ if [[ -s "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completio
   source "`brew --prefix`/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 fi
 
+# Ctags
+alias ctags="`brew --prefix`/bin/ctags"

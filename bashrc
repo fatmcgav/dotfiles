@@ -90,3 +90,5 @@ __gff ()
 
 # added by travis gem
 [ -f /home/gavinw/.travis/travis.sh ] && source /home/gavinw/.travis/travis.sh
+
+export ASDF_DIR=/opt/asdf-vm

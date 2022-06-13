@@ -1,13 +1,3 @@
-[submodule "zprezto"]
-	path = zprezto
-	; url = https://github.com/fatmcgav/prezto.git
-	; url = https://github.com/zsh-users/prezto.git
-[submodule "powerline"]
-  path = fonts/powerline-fonts
-  url = https://github.com/powerline/fonts.git
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "fonts/awesome-terminal-fonts"]
-	path = fonts/awesome-terminal-fonts
-	url = https://github.com/gabrielelana/awesome-terminal-fonts.git

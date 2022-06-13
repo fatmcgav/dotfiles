@@ -40,8 +40,10 @@
 # push/pull/diff/options {{{
 [pull]
     default = current
+	rebase = true
 [diff]
   memonicprefix = true
+	ignoreSubmodules = dirty
 [branch]
   autosetuprebase = always
 [apply]
@@ -172,8 +174,13 @@
     fp = "!git flow feature publish $1"
     fo = "!git flow feature checkout $1"
 
+    # Git worktree aliases
+    wta = "!git worktree add $1"
+    wtl = worktree list
+    wtr = "!git worktree remove $1"
+
     # Prune gone branches
-    prune-branches = !git remote prune origin && git remote prune upstream && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -d
+    prune-branches = "!git remote prune origin && git remote prune upstream && git branch -vv | grep ': gone]' | awk '{$1 == \"+\" ? branch = $2 : branch = $1; print branch}' | xargs -r git branch -d"
 
     # Get the current branch name (not so useful in itself, but used in
     # other aliases)
@@ -184,8 +191,12 @@
     # Delete the remote version of the current branch
     unpublish = "!git push origin :$(git branch-name)"
 
+    # Get upstream name
+    upstream-name = !git remote | egrep -o '(upstream|origin)' | tail -1
+    # Get HEAD branch
+    head-branch = !git remote show $(git upstream-name) | awk '/HEAD branch/ {print $NF}'
     # Pull changes from origin, upstream and then merge master
-    pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master; git push"
+    pu = !"git fetch origin -v; git fetch upstream -v; git merge $(git upstream-name)/$(git head-branch); git push"
 
     # Sync upstream
     sync = !git fetch --prune upstream && git rebase -p --autostash $1
