@@ -1,16 +1,16 @@
 # core {{{
 [core]
-	editor = vim
+	editor = code --wait
 	filemode = false
-	excludesfile = /Users/fatmcgav/.gitignore_global
+	excludesfile = /Users/gavinwilliams/.gitignore_global
 
 #}}}
 # user {{{
-[includeIf "gitdir:~/"]
-  path = .gitconfig-personal
+[includeIf "gitdir:~/Personal/"]
+  path = ~/.gitconfig-personal
 
 [includeIf "gitdir:~/Work/"]
-  path = .gitconfig-work
+  path = ~/.gitconfig-work
 
 #}}}
 # color {{{
@@ -39,7 +39,7 @@
 # }}}
 # push/pull/diff/options {{{
 [pull]
-    default = current
+  default = current
 	rebase = true
 [diff]
   memonicprefix = true
@@ -61,7 +61,7 @@
 # }}}
 # alias {{{
 [alias]
-    work = config user.email gavin.williams@elastic.co
+    work = config user.email gavin.williams@depop.com
     st = status -s
 
     root = rev-parse --show-toplevel
@@ -180,7 +180,7 @@
     wtr = "!git worktree remove $1"
 
     # Prune gone branches
-    prune-branches = "!git remote prune origin && git remote prune upstream && git branch -vv | grep ': gone]' | awk '{$1 == \"+\" ? branch = $2 : branch = $1; print branch}' | xargs -r git branch -d"
+    prune-branches = "!git remote prune origin && git branch -vv | grep ': gone]' | awk '{$1 == \"+\" ? branch = $2 : branch = $1; print branch}' | xargs -r git branch -D"
 
     # Get the current branch name (not so useful in itself, but used in
     # other aliases)
@@ -208,15 +208,9 @@
 	autosquash = true
 [push]
 	default = simple
-[http]
-	cookiefile = /Users/fatmcgav/.gitcookies
 [gpg]
-	program = gpg2
+	program = gpg
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [remote "origin"]
 	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
-[github]
-	user = fatmcgav
-[ghi]
-	token = !security find-internet-password -a fatmcgav -s github.com -l 'ghi token' -w

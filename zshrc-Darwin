@@ -6,10 +6,10 @@ zplug "modules/osx", from:prezto
 # Add to fpath
 export fpath=($(brew --prefix)/share/zsh-completions $(brew --prefix)/share/zsh/functions $fpath)
 
-# Setup Hub
-if [[ 'brew info hub'  ]]; then
-  alias git="`brew --prefix hub`/bin/hub"
-fi
+# # Setup Hub
+# if [[ 'brew ls --versions hub > /dev/null'  ]]; then
+#   alias git="`brew --prefix hub`/bin/hub"
+# fi
 
 # Add coreutils to path
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"

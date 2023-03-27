@@ -1,80 +1,28 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Use Zplug
-export ZPLUG_HOME=$HOME/.zplug
+export ZPLUG_HOME=/usr/local/opt/zplug
 
 # Prezto
 #export _ZPLUG_PREZTO="zsh-users/prezto"
-
-# Use powerlevel9k theme
-# ZSH_THEME="powerlevel9k/powerlevel9k"
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Configure Powerlevel9k
-POWERLEVEL9K_MODE='awesome-patched'
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_SHOW_CHANGESET=true
-POWERLEVEL9K_CHANGESET_HASH_LENGTH=7
-POWERLEVEL9K_PYTHON_ICON='\U1F40D ' # 🐍
-# POWERLEVEL9K_VCS_GIT_ICON=''
-# POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
-# POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
-# POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
-# POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
-# POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
-
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
-POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
-
-POWERLEVEL9K_BATTERY_HIDE_ABOVE_THRESHOLD=100
-# POWERLEVEL9K_BATTERY_LEVEL_BACKGROUND=(red3 darkorange3 darkgoldenrod gold3 yellow3 chartreuse2 mediumspringgreen green3 green3 green4 darkgreen)
-POWERLEVEL9K_BATTERY_LEVEL_BACKGROUND=(darkred orange4 yellow4 yellow4 chartreuse3 green3 green4 darkgreen)
-POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND=black
-POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND=black
-POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND=black
-POWERLEVEL9K_BATTERY_LOW_FOREGROUND=black
-
-POWERLEVEL9K_GO_VERSION_BACKGROUND=blue
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status background_jobs context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(kube_ps1 custom_vault_cluster go_version rvm virtualenv battery time)
-
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 
 # Source zplug
 source $ZPLUG_HOME/init.zsh
 
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
-# Setup p9k
-# zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-
-# # Powerlevel10k 
-zplug "romkatv/powerlevel10k", as:theme, depth:1
-
 # Add prezto
 zplug "sorin-ionescu/prezto", use:init.zsh, hook-build:"ln -s $ZPLUG_HOME/repos/sorin-ionescu/prezto ~/.zprezto"
 
 # # zplug "modules/prompt", from:prezto
-zplug "modules/command-not-found", from:prezto
+# zplug "modules/command-not-found", from:prezto
 zplug "modules/completion", from:prezto
 zplug "modules/directory", from:prezto
-zplug "modules/docker", from:prezto
+# zplug "modules/docker", from:prezto
 zplug "modules/environment", from:prezto
 zplug "modules/fasd", from:prezto
 zplug "modules/git", from:prezto
 zplug "modules/gnu-utility", from:prezto
 zplug "modules/history", from:prezto
-zplug "modules/python", from:prezto
+# zplug "modules/python", from:prezto
 zplug "modules/rsync", from:prezto
 # zplug "modules/ruby", from:prezto
 zplug "modules/ssh", from:prezto
@@ -89,6 +37,12 @@ zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
 zplug "Tarrasch/zsh-autoenv", defer:2
 zplug "trapd00r/LS_COLORS", use:"LS_COLORS", as:command, defer:3
 
+zplug "alexiszamanidis/zsh-git-fzf", from:github
+
+# exa Setup
+export EXA_HOME=/usr/local/opt/exa
+zplug "ptavares/zsh-exa", from:github, defer:2
+
 # Taskwarrior
 zplug "plugins/taskwarrior", from:oh-my-zsh
 
@@ -96,8 +50,8 @@ zplug "plugins/taskwarrior", from:oh-my-zsh
 # zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search", defer:3
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-  --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
-  --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
+  --color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
+  --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 zplug "plugins/fzf", from:oh-my-zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
@@ -136,7 +90,7 @@ _is_installed() {
 
 # Load SSH Identities
 if _is_installed 'modules/ssh'; then
-  zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa-github'
+  zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_ed25519'
 fi
 
 # Load zplug!
@@ -154,6 +108,7 @@ if zplug check "zsh-users/zsh-history-substring-search"; then
 	bindkey '\eOA' history-substring-search-up
 	bindkey '\eOB' history-substring-search-down
 fi
+
 
 # Quick ZSH reload
 function reload() {
@@ -218,38 +173,32 @@ fi
 if [[ -s "${ZDOTDIR:-$HOME}/.dotfiles/docker-aliases.zsh"  ]]; then
   source "${ZDOTDIR:-$HOME}/.dotfiles/docker-aliases.zsh"
 fi
-if [[ -s "${ZDOTDIR:-$HOME}/.dotfiles/kube-aliases.zsh"  ]]; then
-  source "${ZDOTDIR:-$HOME}/.dotfiles/kube-aliases.zsh"
-fi
 
-# Setup RVM
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-  source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-fi
+# # Setup RVM
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+#   source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# fi
 
-## Setup Pythn virtualenv
-# set where virutal environments will live
-export WORKON_HOME=$HOME/.virtualenvs
-# Use system Python version
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
-# ensure all new environments are isolated from the site-packages directory
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-# use the same directory for virtualenvs as virtualenvwrapper
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-# makes pip detect an active virtualenv and install to it
-export PIP_RESPECT_VIRTUALENV=true
-# Load virtualenvwrapper if present
-if [[ -r /usr/bin/virtualenvwrapper.sh ]]; then
-    source /usr/bin/virtualenvwrapper.sh
-else
-  echo "WARNING: Can't find virtualenvwrapper.sh"
-fi
+# ## Setup Pythn virtualenv
+# # set where virutal environments will live
+# export WORKON_HOME=$HOME/.virtualenvs
+# # Use system Python version
+# export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+# export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
+# # ensure all new environments are isolated from the site-packages directory
+# export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+# # use the same directory for virtualenvs as virtualenvwrapper
+# export PIP_VIRTUALENV_BASE=$WORKON_HOME
+# # makes pip detect an active virtualenv and install to it
+# export PIP_RESPECT_VIRTUALENV=true
+# # Load virtualenvwrapper if present
+# if [[ -r /usr/bin/virtualenvwrapper.sh ]]; then
+#     source /usr/bin/virtualenvwrapper.sh
+# else
+#   echo "WARNING: Can't find virtualenvwrapper.sh"
+# fi
 
-
-# Add kubesh to path
-export PATH="~/.kubesh/bin:$PATH"
 
 # Local stuff, not from Git
 if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.local"  ]]; then
@@ -266,17 +215,11 @@ alias in="task add +in"
 alias inbox="task in"
 alias next="task next"
 
-# Pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+# ASDF setup
+. $(brew --prefix asdf)/libexec/asdf.sh
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Setup Starship prompt
+eval "$(starship init zsh)"
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/gavinwilliams/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

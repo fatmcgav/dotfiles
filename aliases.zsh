@@ -21,10 +21,10 @@ alias whatismyip='curl ipinfo.io/ip'
 # SSH using TERM
 alias ssh='TERM=xterm-color ssh'
 
-# LS aliases
-alias ls='ls --color'
-alias ll='ls -lh'
-alias la='ls -alh'
+# # LS aliases
+# alias ls='ls --color'
+# alias ll='ls -lh'
+# alias la='ls -alh'
 
 # Tmux aliases
 alias tmn='tmux new -As'

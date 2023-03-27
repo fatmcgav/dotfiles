@@ -92,3 +92,7 @@ __gff ()
 [ -f /home/gavinw/.travis/travis.sh ] && source /home/gavinw/.travis/travis.sh
 
 export ASDF_DIR=/opt/asdf-vm
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/gavinwilliams/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
