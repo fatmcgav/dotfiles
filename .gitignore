@@ -1,3 +1,4 @@
+config/fish
 vim/bundle/
 tmux/plugins/
 tmux/resurrect/
