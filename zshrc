@@ -1,5 +1,5 @@
 # Use Zplug
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=/usr/share/zsh/scripts/zplug
 
 # Prezto
 #export _ZPLUG_PREZTO="zsh-users/prezto"
@@ -40,7 +40,6 @@ zplug "trapd00r/LS_COLORS", use:"LS_COLORS", as:command, defer:3
 zplug "alexiszamanidis/zsh-git-fzf", from:github
 
 # exa Setup
-export EXA_HOME=/usr/local/opt/exa
 zplug "ptavares/zsh-exa", from:github, defer:2
 
 # Taskwarrior
@@ -205,21 +204,16 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zshrc.local"  ]]; then
   source "${ZDOTDIR:-$HOME}/.zshrc.local"
 fi
 
-# Puppet tools
-if [[ -d '/opt/puppetlabs/pdk/bin' ]]; then
-  export PATH="$PATH:/opt/puppetlabs/pdk/bin"
+# OS specific config
+if [[ -s "${ZDOTDIR:-${HOME}}/.zshrc-`uname`" ]]; then
+  source "${ZDOTDIR:-${HOME}}/.zshrc-`uname`"
 fi
+
 
 # Taskwarrior aliases
 alias in="task add +in"
 alias inbox="task in"
 alias next="task next"
 
-# ASDF setup
-. $(brew --prefix asdf)/libexec/asdf.sh
-
 # Setup Starship prompt
 eval "$(starship init zsh)"
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/gavinwilliams/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
