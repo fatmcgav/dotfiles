@@ -5,3 +5,4 @@ end
 
 # Setup Starship prompt
 starship init fish | source
+enable_transience
