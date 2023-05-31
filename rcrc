@@ -1,3 +1,3 @@
 DOTFILES_DIRS="~/.dotfiles"
 EXCLUDES="bundle fonts README.markdown makesymlinks.sh"
-SYMLINK_DIRS="vim tmux bashrc.d scripts config/fish config/alacritty config/gh config/kitty"
+SYMLINK_DIRS="tmux bashrc.d scripts config/fish config/alacritty config/astrovim config/nvim config/gh config/kitty"

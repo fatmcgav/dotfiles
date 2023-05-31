@@ -4,3 +4,6 @@ danhper/fish-ssh-agent
 jorgebucaran/autopair.fish
 gazorby/fish-exa
 jhillyerd/plugin-git
+budimanjojo/tmux.fish
+edc/bass
+lgathy/google-cloud-sdk-fish-completion

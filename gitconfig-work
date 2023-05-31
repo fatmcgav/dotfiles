@@ -1,11 +1,11 @@
 # Gitconfig Work
 [user]
-  email = gavin.williams@depop.com
+  email = gavin.williams@machinemax.com
   name = Gavin Williams
-  signingkey = 13ECFD33DAD95819AA3F26A76D72FC116961D41D
+  # signingkey = 13ECFD33DAD95819AA3F26A76D72FC116961D41D
 
-[commit]
-  gpgsign = true
-
-[gpg]
-	program = /usr/local/bin/gpg
+# # [commit]
+# #   gpgsign = true
+# #
+# [gpg]
+# 	program = /usr/local/bin/gpg

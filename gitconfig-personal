@@ -4,4 +4,4 @@
   name = Gavin Williams
 
 [core]
-  sshCommand = ssh -i /Users/gavinwilliams/.ssh/id_ed25519-personal
+  sshCommand = ssh -i ~/.ssh/id_ed25519-personal

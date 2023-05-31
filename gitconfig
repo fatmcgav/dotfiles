@@ -1,8 +1,8 @@
 # core {{{
 [core]
-	editor = code --wait
+	editor = nvim
 	filemode = false
-	excludesfile = /Users/gavinwilliams/.gitignore_global
+	excludesfile = ~/.gitignore_global
 
 #}}}
 # user {{{
@@ -200,6 +200,9 @@
 
     # Sync upstream
     sync = !git fetch --prune upstream && git rebase -p --autostash $1
+
+    # Clone repo with worktree support
+    clone-worktree = "!sh $HOME/.local/bin/git-clone-bare-for-worktrees.sh"
 # }}}
 
 [rerere]
@@ -208,8 +211,8 @@
 	autosquash = true
 [push]
 	default = simple
-[gpg]
-	program = gpg
+; [gpg]
+; 	program = gpg
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [remote "origin"]
